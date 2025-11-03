@@ -10,15 +10,15 @@
 
     Protected Sub Btn_guardar_Click(sender As Object, e As EventArgs)
         Persona.Nombre = Txt_nombre.Text
-        persona.Apellido1 = Txt_apellido.Text
-        persona.Apellido2 = Txt_apellido.Text
-        persona.FechaNacimiento = Txt_edad.Text
+        persona.Apellido1 = Txt_apellido1.Text
+        persona.Apellido2 = Txt_apellido2.Text
+        persona.FechaNacimiento = Txt_FechaNacimiento.Text
 
         If dbHelper.create(Persona) Then
             lbl_mensaje.Text = "Persona guardada correctamente"
             Txt_nombre.Text = ""
-            Txt_apellido.Text = ""
-            Txt_edad.Text = ""
+            Txt_apellido1.Text = ""
+            Txt_FechaNacimiento.Text = ""
         Else
             lbl_mensaje.Text = "Error al guardar la persona"
         End If
@@ -74,8 +74,8 @@
         Dim persona As Persona = New Persona()
 
         Txt_nombre.Text = row.Cells(3).Text
-        Txt_apellido.Text = row.Cells(4).Text
-        Txt_edad.Text = row.Cells(5).Text
+        Txt_apellido1.Text = row.Cells(4).Text
+        Txt_FechaNacimiento.Text = row.Cells(5).Text
 
         editando.Value = id
 
@@ -86,9 +86,9 @@
 
         Dim persona As Persona = New Persona With {
             .Nombre = Txt_nombre.Text(),
-            .Apellido1 = Txt_apellido.Text(),
-            .Apellido2 = Txt_apellido.Text(),
-            .FechaNacimiento = Txt_edad.Text(),
+            .Apellido1 = Txt_apellido1.Text(),
+            .Apellido2 = Txt_apellido2.Text(),
+            .FechaNacimiento = Txt_FechaNacimiento.Text(),
             .IdPersona = editando.Value()
         }
         dbHelper.update(persona)
