@@ -77,15 +77,6 @@ Partial Public Class FormPersona
     Protected WithEvents Txt_Telefono As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control DropDownList1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents DropDownList1 As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''Control Btn_guardar.
     '''</summary>
     '''<remarks>
@@ -102,6 +93,15 @@ Partial Public Class FormPersona
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents BtnActualizar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control Btn_Cancelar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Btn_Cancelar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''Control lbl_mensaje.

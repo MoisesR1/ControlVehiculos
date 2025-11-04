@@ -48,8 +48,8 @@
             </Columns>
 </asp:GridView>
 <asp:SqlDataSource ID="SqlDataSource" runat="server" 
-    ConnectionString="<%$ ConnectionStrings:II-46ConnectionString2 %>" 
-    ProviderName="<%$ ConnectionStrings:II-46ConnectionString2.ProviderName %>" 
+    ConnectionString="<%$ ConnectionStrings:II-46ConnectionString %>" 
+    ProviderName="<%$ ConnectionStrings:II-46ConnectionString.ProviderName %>" 
     SelectCommand="SELECT * FROM [Persona]"></asp:SqlDataSource>
 
 </asp:Content>

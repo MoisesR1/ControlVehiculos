@@ -108,4 +108,8 @@
         Gv_personas.EditIndex = -1
 
     End Sub
+
+    Protected Sub Btn_Cancelar_Click(sender As Object, e As EventArgs)
+
+    End Sub
 End Class

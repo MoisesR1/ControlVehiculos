@@ -2,7 +2,7 @@
 
 Public Class dbPersona
 
-    Private ReadOnly ConectionString As String = ConfigurationManager.ConnectionStrings("II-46ConnectionString2").ConnectionString
+    Private ReadOnly ConectionString As String = ConfigurationManager.ConnectionStrings("II-46ConnectionString").ConnectionString
 
     Public Function create(Persona As Persona) As Boolean
         Try
