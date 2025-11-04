@@ -2,7 +2,7 @@
 
 Public Class dbPersona
 
-    Private ReadOnly ConectionString As String = ConfigurationManager.ConnectionStrings("II-46ConnectionString").ConnectionString
+    Private ReadOnly ConectionString As String = ConfigurationManager.ConnectionStrings("II-46ConnectionString2").ConnectionString
 
     Public Function create(Persona As Persona) As Boolean
         Try
@@ -34,7 +34,7 @@ Public Class dbPersona
         Try
             Dim sql As String = "DELETE FROM Persona WHERE idPersona = @IdPersona"
             Dim parametros As New List(Of SqlParameter) From {
-                New SqlParameter("@Id", id)
+                New SqlParameter("@IdPersona", id)
                 }
             Using connection As New SqlConnection(ConectionString)
                 Using command As New SqlCommand(sql, connection)
