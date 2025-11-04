@@ -21,14 +21,15 @@
   <asp:TextBox ID="Txt_nacionalidad" Placeholder="Nacionalidad" runat="server"></asp:TextBox>
   <asp:TextBox ID="Txt_FechaNacimiento"  Placeholder="Fecha de Nacimiento" TextMode="Date" runat="server"></asp:TextBox>
   <asp:TextBox ID="Txt_Telefono" Placeholder="Telefono" runat="server"></asp:TextBox>
-  <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+  
 
   <asp:Button ID="Btn_guardar" CssClass="btn btn-primary" runat="server" Text="Guardar" OnClick="Btn_guardar_Click" />
   <asp:Button ID="BtnActualizar" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnActualizar_Click" />
+  <asp:Button ID="Btn_Cancelar" CssClass="btn btn-secondary btn-hover-move" runat="server" Text="Cancelar" OnClick="Btn_Cancelar_Click" />
   <asp:Label ID="lbl_mensaje" runat="server" Text=""></asp:Label>
 
     </div>
-    <asp:GridView ID="Gv_personas" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource" Width="742px" 
+    <asp:GridView ID="Gv_personas" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource" Width="742px" 
         OnRowDeleting="Gv_personas_RowDeleting" 
         OnRowEditing="Gv_personas_RowEditing" 
         OnRowCancelingEdit="Gv_personas_RowCancelingEdit" 
@@ -36,19 +37,19 @@
         
         OnSelectedIndexChanged="Gv_personas_SelectedIndexChanged" >
         <Columns>
-            <asp:CommandField ShowSelectButton="true"  ControlStyle-CssClass="btn btn-success" />
-            <asp:CommandField ShowEditButton="True" ControlStyle-CssClass="btn btn-primary" />
-            <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" ReadOnly="True" SortExpression="ID" />
+            <asp:BoundField DataField="IdPersona" HeaderText="IdPersona" ReadOnly="True" SortExpression="IdPersona" />
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
-            <asp:BoundField DataField="Apellido1" HeaderText="Primer Apellido" SortExpression="Apellido1" />
-            <asp:BoundField DataField="Apellido2" HeaderText="Segundo Apellido" SortExpression="Apellido2" />
-            <asp:CommandField ShowDeleteButton="True" ControlStyle-CssClass="btn btn-danger"  />
-           
-        </Columns>
+            <asp:BoundField DataField="Apellido1" HeaderText="Apellido1" SortExpression="Apellido1" />
+            <asp:BoundField DataField="Apellido2" HeaderText="Apellido2" SortExpression="Apellido2" />
+            <asp:BoundField DataField="Nacionalidad" HeaderText="Nacionalidad" SortExpression="Nacionalidad" />
+            <asp:BoundField DataField="FechaNacimiento" HeaderText="FechaNacimiento" SortExpression="FechaNacimiento" />
+            <asp:BoundField DataField="Telefono" HeaderText="Telefono" SortExpression="Telefono" />
+            <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
+            </Columns>
 </asp:GridView>
 <asp:SqlDataSource ID="SqlDataSource" runat="server" 
-    ConnectionString="<%$ ConnectionStrings:II-46ConnectionString %>" 
-    ProviderName="<%$ ConnectionStrings:II-46ConnectionString.ProviderName %>" 
+    ConnectionString="<%$ ConnectionStrings:II-46ConnectionString2 %>" 
+    ProviderName="<%$ ConnectionStrings:II-46ConnectionString2.ProviderName %>" 
     SelectCommand="SELECT * FROM [Persona]"></asp:SqlDataSource>
 
 </asp:Content>
