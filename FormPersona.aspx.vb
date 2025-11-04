@@ -12,13 +12,18 @@
         Persona.Nombre = Txt_nombre.Text
         persona.Apellido1 = Txt_apellido1.Text
         persona.Apellido2 = Txt_apellido2.Text
+        persona.Nacionalidad = Txt_nacionalidad.Text
         persona.FechaNacimiento = Txt_FechaNacimiento.Text
+        persona.Telefono = Txt_Telefono.Text
 
         If dbHelper.create(Persona) Then
             lbl_mensaje.Text = "Persona guardada correctamente"
             Txt_nombre.Text = ""
             Txt_apellido1.Text = ""
+            Txt_apellido2.Text = ""
+            Txt_nacionalidad.Text = ""
             Txt_FechaNacimiento.Text = ""
+            Txt_Telefono.Text = ""
         Else
             lbl_mensaje.Text = "Error al guardar la persona"
         End If
@@ -51,9 +56,11 @@
         Dim id As Integer = Convert.ToInt32(Gv_personas.DataKeys(e.RowIndex).Value)
         Dim persona As Persona = New Persona With {
             .Nombre = e.NewValues("Nombre"),
-            .Apellido1 = e.NewValues("Apellido"),
-            .Apellido2 = e.NewValues("Apellido"),
-            .FechaNacimiento = e.NewValues("Edad"),
+            .Apellido1 = e.NewValues("Apellido1"),
+            .Apellido2 = e.NewValues("Apellido2"),
+            .Nacionalidad = e.NewValues("Nacionalidad"),
+            .FechaNacimiento = e.NewValues("Fecha de Nacimiento"),
+            .Telefono = e.NewValues("Telefono"),
             .IdPersona = id
         }
         dbHelper.update(persona)
@@ -75,7 +82,10 @@
 
         Txt_nombre.Text = row.Cells(3).Text
         Txt_apellido1.Text = row.Cells(4).Text
+        Txt_apellido2.Text = row.Cells(5).Text
+        Txt_nacionalidad.Text = row.Cells(6).Text
         Txt_FechaNacimiento.Text = row.Cells(5).Text
+        Txt_Telefono.Text = row.Cells(8).Text
 
         editando.Value = id
 
@@ -88,7 +98,9 @@
             .Nombre = Txt_nombre.Text(),
             .Apellido1 = Txt_apellido1.Text(),
             .Apellido2 = Txt_apellido2.Text(),
+            .Nacionalidad = Txt_nacionalidad.Text(),
             .FechaNacimiento = Txt_FechaNacimiento.Text(),
+            .Telefono = Txt_Telefono.Text(),
             .IdPersona = editando.Value()
         }
         dbHelper.update(persona)

@@ -1,18 +1,33 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="FormPersona.aspx.vb" Inherits="ControlVehiculos.FormPersona" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <asp:hiddenField ID="editando" runat="server" />
+        
+    <asp:hiddenField ID="editando" runat="server" />
+
+    <style>
+         .btn-hover-move {
+            transition: transform 0.5s ease, box-shadow 0.2s;
+          }
+         .btn-hover-move:hover{
+            transform: translate(-4px) scale(1.04);
+            box-shadow: 0 6px 18px rgb(0 148 255);
+          }
+    </style>
+
+     <div class="container d-flex flex-column mb-3 gap-2"> 
 
   <asp:TextBox ID="Txt_nombre" Placeholder="Nombre" runat="server"></asp:TextBox>
   <asp:TextBox ID="Txt_apellido1" Placeholder="Primer Apellido" runat="server"></asp:TextBox>
   <asp:TextBox ID="Txt_apellido2" Placeholder="Segundo Apellido" runat="server"></asp:TextBox>
-  <asp:TextBox ID="Txt_FechaNacimiento" TextMode="Date" Placeholder="Fecha de Nacimiento" runat="server"></asp:TextBox>
+  <asp:TextBox ID="Txt_nacionalidad" Placeholder="Nacionalidad" runat="server"></asp:TextBox>
+  <asp:TextBox ID="Txt_FechaNacimiento"  Placeholder="Fecha de Nacimiento" TextMode="Date" runat="server"></asp:TextBox>
+  <asp:TextBox ID="Txt_Telefono" Placeholder="Telefono" runat="server"></asp:TextBox>
   <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
 
   <asp:Button ID="Btn_guardar" CssClass="btn btn-primary" runat="server" Text="Guardar" OnClick="Btn_guardar_Click" />
   <asp:Button ID="BtnActualizar" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnActualizar_Click" />
   <asp:Label ID="lbl_mensaje" runat="server" Text=""></asp:Label>
 
-    
+    </div>
     <asp:GridView ID="Gv_personas" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource" Width="742px" 
         OnRowDeleting="Gv_personas_RowDeleting" 
         OnRowEditing="Gv_personas_RowEditing" 
