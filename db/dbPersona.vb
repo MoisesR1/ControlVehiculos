@@ -4,15 +4,16 @@ Public Class dbPersona
 
     Private ReadOnly ConectionString As String = ConfigurationManager.ConnectionStrings("II-46ConnectionString").ConnectionString
 
-    Public Function create(Persona As Persona) As Boolean
+    Public Function create(Persona As Persona) As String
         Try
-            Dim sql As String = "INSERT INTO Persona (Nombre, Apellido1, Apellido2, Nacionalidad, Fecha de Nacimiento, Telefono) VALUES (@Nombre, @Apellido1, @Apellido2, @Nacionalidad, @Fecha de Nacimiento, @Telefono)"
+            Dim sql As String = "INSERT INTO Persona (Nombre, Apellido1, Apellido2, Nacionalidad, FechaNacimiento, Telefono) 
+VALUES (@Nombre, @Apellido1, @Apellido2, @Nacionalidad, @FechaNacimiento, @Telefono)"
             Dim parametros As New List(Of SqlParameter) From {
                 New SqlParameter("@Nombre", Persona.Nombre),
                 New SqlParameter("@Apellido1", Persona.Apellido1),
                 New SqlParameter("@Apellido2", Persona.Apellido2),
                 New SqlParameter("@Nacionalidad", Persona.Nacionalidad),
-                New SqlParameter("@Fecha de Nacimiento", Persona.FechaNacimiento),
+                New SqlParameter("@FechaNacimiento", Persona.FechaNacimiento),
                 New SqlParameter("@Telefono", Persona.Telefono)
             }
 
@@ -24,10 +25,10 @@ Public Class dbPersona
                 End Using
             End Using
         Catch ex As Exception
-            Return False
+            Return "Error al guardar la persona: " & ex.Message
 
         End Try
-        Return True
+        Return "Persona Guardada"
     End Function
 
     Public Function delete(id As Integer) As String

@@ -9,26 +9,28 @@
 
 
     Protected Sub Btn_guardar_Click(sender As Object, e As EventArgs)
-        Persona.Nombre = Txt_nombre.Text
-        persona.Apellido1 = Txt_apellido1.Text
-        persona.Apellido2 = Txt_apellido2.Text
-        persona.Nacionalidad = Txt_nacionalidad.Text
-        persona.FechaNacimiento = Txt_FechaNacimiento.Text
-        persona.Telefono = Txt_Telefono.Text
+        Try
+            persona.Nombre = Txt_nombre.Text
+            persona.Apellido1 = Txt_apellido1.Text
+            persona.Apellido2 = Txt_apellido2.Text
+            persona.Nacionalidad = Txt_nacionalidad.Text
+            persona.FechaNacimiento = Txt_FechaNacimiento.Text
+            persona.Telefono = Txt_Telefono.Text
 
-        If dbHelper.create(Persona) Then
-            lbl_mensaje.Text = "Persona guardada correctamente"
+
+            lbl_mensaje.Text = dbHelper.create(persona)
             Txt_nombre.Text = ""
-            Txt_apellido1.Text = ""
-            Txt_apellido2.Text = ""
-            Txt_nacionalidad.Text = ""
-            Txt_FechaNacimiento.Text = ""
-            Txt_Telefono.Text = ""
-        Else
-            lbl_mensaje.Text = "Error al guardar la persona"
-        End If
+                Txt_apellido1.Text = ""
+                Txt_apellido2.Text = ""
+                Txt_nacionalidad.Text = ""
+                Txt_FechaNacimiento.Text = ""
+                Txt_Telefono.Text = ""
 
-        Gv_personas.DataBind()
+
+                Gv_personas.DataBind()
+        Catch ex As Exception
+            lbl_mensaje.Text = "Error al guardar la persona: " & ex.Message
+        End Try
 
     End Sub
 
