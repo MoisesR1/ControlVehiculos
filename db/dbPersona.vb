@@ -33,9 +33,9 @@ VALUES (@Nombre, @Apellido1, @Apellido2, @Nacionalidad, @FechaNacimiento, @Telef
 
     Public Function delete(id As Integer) As String
         Try
-            Dim sql As String = "DELETE FROM Persona WHERE idPersona = @IdPersona"
+            Dim sql As String = "DELETE FROM Persona WHERE idPersona = @id"
             Dim parametros As New List(Of SqlParameter) From {
-                New SqlParameter("@IdPersona", id)
+                New SqlParameter("@id", id)
                 }
             Using connection As New SqlConnection(ConectionString)
                 Using command As New SqlCommand(sql, connection)

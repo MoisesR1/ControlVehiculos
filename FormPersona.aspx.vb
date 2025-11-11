@@ -1,4 +1,5 @@
-﻿Public Class FormPersona
+﻿Imports ControlVehiculos.Utils
+Public Class FormPersona
     Inherits System.Web.UI.Page
     Public persona As New Persona()
     Protected dbHelper As New dbPersona()
@@ -16,20 +17,28 @@
             persona.Nacionalidad = Txt_nacionalidad.Text
             persona.FechaNacimiento = Txt_FechaNacimiento.Text
             persona.Telefono = Txt_Telefono.Text
+            SwalUtils.ShowSwalMessage(Me, "Guardando", "Persona guardada exitosamente.", "Gracias")
 
 
-            lbl_mensaje.Text = dbHelper.create(persona)
+            Dim mensaje = dbHelper.create(persona)
+            If mensaje.Contains("Error") Then
+                ShowSwalError(Me, "Error", mensaje)
+            Else
+                ShowSwal(Me, "Éxito", mensaje, "success")
+            End If
+
             Txt_nombre.Text = ""
-                Txt_apellido1.Text = ""
-                Txt_apellido2.Text = ""
-                Txt_nacionalidad.Text = ""
-                Txt_FechaNacimiento.Text = ""
-                Txt_Telefono.Text = ""
+            Txt_apellido1.Text = ""
+            Txt_apellido2.Text = ""
+            Txt_nacionalidad.Text = ""
+            Txt_FechaNacimiento.Text = ""
+            Txt_Telefono.Text = ""
 
 
-                Gv_personas.DataBind()
+            Gv_personas.DataBind()
         Catch ex As Exception
             lbl_mensaje.Text = "Error al guardar la persona: " & ex.Message
+            ShowSwalError(Me, "Error al guardar la persona: ", ex.Message)
         End Try
 
     End Sub
@@ -37,12 +46,19 @@
     Protected Sub Gv_personas_RowDeleting(sender As Object, e As GridViewDeleteEventArgs)
         Try
             Dim id As Integer = Convert.ToInt32(Gv_personas.DataKeys(e.RowIndex).Value)
-            dbHelper.delete(id)
+
+            Dim mensaje = dbHelper.delete(id)
+            If mensaje.Contains("Error") Then
+                ShowSwalError(Me, "Error", mensaje)
+            Else
+                ShowSwal(Me, "Éxito", mensaje, "success")
+            End If
+
             e.Cancel = True
             Gv_personas.DataBind()
         Catch ex As Exception
             lbl_mensaje.Text = "Error al eliminar la persona: " & ex.Message
-
+            ShowSwalError(Me, "Error al eliminar la persona: ", ex.Message)
         End Try
     End Sub
 
