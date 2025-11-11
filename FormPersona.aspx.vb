@@ -17,14 +17,12 @@ Public Class FormPersona
             persona.Nacionalidad = Txt_nacionalidad.Text
             persona.FechaNacimiento = Txt_FechaNacimiento.Text
             persona.Telefono = Txt_Telefono.Text
-            SwalUtils.ShowSwalMessage(Me, "Guardando", "Persona guardada exitosamente.", "Gracias")
-
 
             Dim mensaje = dbHelper.create(persona)
             If mensaje.Contains("Error") Then
                 ShowSwalError(Me, "Error", mensaje)
             Else
-                ShowSwal(Me, "Persona creada")
+                ShowSwal(Me, mensaje)
             End If
 
             Txt_nombre.Text = ""
