@@ -38,7 +38,7 @@
         OnSelectedIndexChanged="Gv_personas_SelectedIndexChanged" >
         <Columns>
             <asp:CommandField ShowSelectButton="true"  ControlStyle-CssClass="btn btn-success" />
-            <asp:BoundField DataField="IdPersona" HeaderText="IdPersona" ReadOnly="True" SortExpression="IdPersona" />
+            <asp:BoundField DataField="IdPersona" Visible="false" HeaderText="IdPersona" ReadOnly="True" SortExpression="IdPersona" />
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
             <asp:BoundField DataField="Apellido1" HeaderText="Apellido1" SortExpression="Apellido1" />
             <asp:BoundField DataField="Apellido2" HeaderText="Apellido2" SortExpression="Apellido2" />

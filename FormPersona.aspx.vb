@@ -24,7 +24,7 @@ Public Class FormPersona
             If mensaje.Contains("Error") Then
                 ShowSwalError(Me, "Error", mensaje)
             Else
-                ShowSwal(Me, "Éxito", mensaje, "success")
+                ShowSwal(Me, "Persona creada")
             End If
 
             Txt_nombre.Text = ""
@@ -95,15 +95,16 @@ Public Class FormPersona
     Protected Sub Gv_personas_SelectedIndexChanged(sender As Object, e As EventArgs)
 
         Dim row As GridViewRow = Gv_personas.SelectedRow()
-        Dim id As Integer = Convert.ToInt32(row.Cells(2).Text)
+        Dim id As Integer
+        Integer.TryParse(Gv_personas.SelectedDataKey.Value?.ToString(), id)
         Dim persona As Persona = New Persona()
 
-        Txt_nombre.Text = row.Cells(3).Text
-        Txt_apellido1.Text = row.Cells(4).Text
-        Txt_apellido2.Text = row.Cells(5).Text
-        Txt_nacionalidad.Text = row.Cells(6).Text
-        Txt_FechaNacimiento.Text = row.Cells(5).Text
-        Txt_Telefono.Text = row.Cells(8).Text
+        Txt_nombre.Text = row.Cells(2).Text
+        Txt_apellido1.Text = row.Cells(3).Text
+        Txt_apellido2.Text = row.Cells(4).Text
+        Txt_nacionalidad.Text = row.Cells(5).Text
+        Txt_FechaNacimiento.Text = row.Cells(6).Text
+        Txt_Telefono.Text = row.Cells(7).Text
 
         editando.Value = id
 
@@ -124,10 +125,23 @@ Public Class FormPersona
         dbHelper.update(persona)
         Gv_personas.DataBind()
         Gv_personas.EditIndex = -1
+        LimpiarCampos()
+
+    End Sub
+
+    Protected Sub LimpiarCampos()
+        Txt_nombre.Text = ""
+        Txt_apellido1.Text = ""
+        Txt_apellido2.Text = ""
+        Txt_nacionalidad.Text = ""
+        Txt_FechaNacimiento.Text = ""
+        Txt_Telefono.Text = ""
+        Btn_guardar.Visible = True
+
 
     End Sub
 
     Protected Sub Btn_Cancelar_Click(sender As Object, e As EventArgs)
-
+        LimpiarCampos()
     End Sub
 End Class
