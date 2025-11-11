@@ -52,7 +52,7 @@ VALUES (@Nombre, @Apellido1, @Apellido2, @Nacionalidad, @FechaNacimiento, @Telef
 
     Public Function update(Persona As Persona) As String
         Try
-            Dim sql As String = "UPDATE Persona SET Nombre = @Nombre, Apellido1 = @Apellido1, Apellido2 = @Apellido2, Nacionalidad = @Nacionalidad, Fecha de Nacimiento = @Fecha de Nacimiento, Telefono = @Telefono WHERE idPersona = @Id"
+            Dim sql As String = "UPDATE Personas SET Nombre = @Nombre, Apellido1 = @Apellido1, Apellido2 = @Apellido2, Nacionalidad = @Nacionalidad, Fecha de Nacimiento = @Fecha de Nacimiento, Telefono = @Telefono WHERE idPersona = @Id"
             Dim parametros As New List(Of SqlParameter) From {
                 New SqlParameter("@Id", Persona.IdPersona),
                 New SqlParameter("@Nombre", Persona.Nombre),

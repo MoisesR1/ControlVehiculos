@@ -69,20 +69,31 @@ Public Class FormPersona
 
     Protected Sub Gv_personas_RowUpdating(sender As Object, e As GridViewUpdateEventArgs)
 
-        Dim id As Integer = Convert.ToInt32(Gv_personas.DataKeys(e.RowIndex).Value)
-        Dim persona As Persona = New Persona With {
-            .Nombre = e.NewValues("Nombre"),
-            .Apellido1 = e.NewValues("Apellido1"),
-            .Apellido2 = e.NewValues("Apellido2"),
-            .Nacionalidad = e.NewValues("Nacionalidad"),
-            .FechaNacimiento = e.NewValues("Fecha de Nacimiento"),
-            .Telefono = e.NewValues("Telefono"),
-            .IdPersona = id
-        }
-        dbHelper.update(persona)
-        Gv_personas.DataBind()
-        e.Cancel = True
-        Gv_personas.EditIndex = -1
+        Try
+            Dim id As Integer = Convert.ToInt32(Gv_personas.DataKeys(e.RowIndex).Value)
+            Dim persona = New Persona With {
+                .Nombre = e.NewValues("Nombre"),
+                .Apellido1 = e.NewValues("Apellido1"),
+                .Apellido2 = e.NewValues("Apellido2"),
+                .Nacionalidad = e.NewValues("Nacionalidad"),
+                .FechaNacimiento = e.NewValues("Fecha de Nacimiento"),
+                .Telefono = e.NewValues("Telefono"),
+                .IdPersona = id
+            }
+            Dim mensaje = dbHelper.update(persona)
+            If mensaje.Contains("Error") Then
+                ShowSwalError(Me, "Error", mensaje)
+            Else
+                ShowSwal(Me, mensaje)
+            End If
+
+            Gv_personas.DataBind()
+            e.Cancel = True
+            Gv_personas.EditIndex = -1
+        Catch ex As Exception
+            ShowSwalError(Me, "Error al actualizar la persona: ", ex.Message)
+        End Try
+
 
     End Sub
 
@@ -111,7 +122,8 @@ Public Class FormPersona
 
     Protected Sub BtnActualizar_Click(sender As Object, e As EventArgs)
 
-        Dim persona As Persona = New Persona With {
+        Try
+            Dim persona = New Persona With {
             .Nombre = Txt_nombre.Text(),
             .Apellido1 = Txt_apellido1.Text(),
             .Apellido2 = Txt_apellido2.Text(),
@@ -120,10 +132,20 @@ Public Class FormPersona
             .Telefono = Txt_Telefono.Text(),
             .IdPersona = editando.Value()
         }
-        dbHelper.update(persona)
-        Gv_personas.DataBind()
-        Gv_personas.EditIndex = -1
-        LimpiarCampos()
+            Dim mensaje = dbHelper.update(persona)
+            If mensaje.Contains("Error") Then
+                ShowSwalError(Me, "Error", mensaje)
+            Else
+                ShowSwal(Me, mensaje)
+            End If
+
+            Gv_personas.DataBind()
+            Gv_personas.EditIndex = -1
+            LimpiarCampos()
+
+        Catch ex As Exception
+            ShowSwalError(Me, "Error al actualizar la persona: ", ex.Message)
+        End Try
 
     End Sub
 
