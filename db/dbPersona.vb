@@ -1,13 +1,13 @@
 ﻿Imports System.Data.SqlClient
-
+Imports System.Security.Cryptography
 Public Class dbPersona
 
-    Private ReadOnly ConectionString As String = ConfigurationManager.ConnectionStrings("II-46ConnectionString").ConnectionString
-
+    Public ReadOnly ConectionString As String = ConfigurationManager.ConnectionStrings("II-46ConnectionString").ConnectionString
+    Private ReadOnly dbHelper = New DbHelper() 'clase para manejar la conexion y consultas a la base de datos
     Public Function create(Persona As Persona) As String
         Try
             Dim sql As String = "INSERT INTO Persona (Nombre, Apellido1, Apellido2, Nacionalidad, FechaNacimiento, Telefono) 
-VALUES (@Nombre, @Apellido1, @Apellido2, @Nacionalidad, @FechaNacimiento, @Telefono)"
+             VALUES (@Nombre, @Apellido1, @Apellido2, @Nacionalidad, @FechaNacimiento, @Telefono)"
             Dim parametros As New List(Of SqlParameter) From {
                 New SqlParameter("@Nombre", Persona.Nombre),
                 New SqlParameter("@Apellido1", Persona.Apellido1),
@@ -16,14 +16,8 @@ VALUES (@Nombre, @Apellido1, @Apellido2, @Nacionalidad, @FechaNacimiento, @Telef
                 New SqlParameter("@FechaNacimiento", Persona.FechaNacimiento),
                 New SqlParameter("@Telefono", Persona.Telefono)
             }
+            dbHelper.ExecuteNonQuery(sql, parametros)
 
-            Using connection As New SqlConnection(ConectionString)
-                Using command As New SqlCommand(sql, connection)
-                    command.Parameters.AddRange(parametros.ToArray())
-                    connection.Open()
-                    command.ExecuteNonQuery()
-                End Using
-            End Using
         Catch ex As Exception
             Return "Error al guardar la persona: " & ex.Message
 
