@@ -20,9 +20,9 @@ Public Class FormPersona
 
             Dim mensaje = dbHelper.create(persona)
             If mensaje.Contains("Error") Then
-                ShowSwalError(Me, "Error", mensaje)
+                SwalUtils.ShowSwalError(Me, "Error", mensaje)
             Else
-                ShowSwal(Me, mensaje)
+                ShowSwal(Me, "Persona creada")
             End If
 
             Txt_nombre.Text = ""
@@ -36,7 +36,7 @@ Public Class FormPersona
             Gv_personas.DataBind()
         Catch ex As Exception
             lbl_mensaje.Text = "Error al guardar la persona: " & ex.Message
-            ShowSwalError(Me, "Error al guardar la persona: ", ex.Message)
+            SwalUtils.ShowSwalError(Me, "Error al guardar la persona: ", ex.Message)
         End Try
 
     End Sub
