@@ -44,16 +44,16 @@ Public Class dbPersona
         Return "Persona Eliminada"
     End Function
 
-    Public Function update(Persona As Persona) As String
+    Public Function update(ByRef Persona As Persona) As String
         Try
-            Dim sql As String = "UPDATE Persona SET Nombre = @Nombre, Apellido1 = @Apellido1, Apellido2 = @Apellido2, Nacionalidad = @Nacionalidad, Fecha de Nacimiento = @Fecha de Nacimiento, Telefono = @Telefono WHERE idPersona = @Id"
+            Dim sql As String = "UPDATE Persona SET Nombre = @Nombre, Apellido1 = @Apellido1, Apellido2 = @Apellido2, Nacionalidad = @Nacionalidad, FechaNacimiento = @FechaNacimiento, Telefono = @Telefono WHERE idPersona = @Id"
             Dim parametros As New List(Of SqlParameter) From {
                 New SqlParameter("@Id", Persona.IdPersona),
                 New SqlParameter("@Nombre", Persona.Nombre),
-                New SqlParameter("@Apellido", Persona.Apellido1),
+                New SqlParameter("@Apellido1", Persona.Apellido1),
                 New SqlParameter("@Apellido2", Persona.Apellido2),
                 New SqlParameter("@Nacionalidad", Persona.Nacionalidad),
-                New SqlParameter("@Fecha de Nacimiento", Persona.FechaNacimiento),
+                New SqlParameter("@FechaNacimiento", Persona.FechaNacimiento),
                 New SqlParameter("@Telefono", Persona.Telefono)
                 }
             Using connection As New SqlConnection(ConectionString)
@@ -64,6 +64,7 @@ Public Class dbPersona
                 End Using
             End Using
         Catch ex As Exception
+            Return "Error al actualizar la persona: " & ex.Message
         End Try
         Return "Persona Actualizada"
     End Function

@@ -29,7 +29,7 @@
   <asp:Label ID="lbl_mensaje" runat="server" Text=""></asp:Label>
 
     </div>
-    <asp:GridView ID="Gv_personas" runat="server" AutoGenerateColumns="False" DataKeyNames="idPersona" DataSourceID="SqlDataSource" Width="742px"
+    <asp:GridView ID="Gv_personas" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="idPersona" DataSourceID="SqlDataSource" Width="742px"
         OnRowDeleting="Gv_personas_RowDeleting" 
         OnRowEditing="Gv_personas_RowEditing" 
         OnRowCancelingEdit="Gv_personas_RowCancelingEdit" 

@@ -22,7 +22,7 @@ Public Class FormPersona
             If mensaje.Contains("Error") Then
                 SwalUtils.ShowSwalError(Me, "Error", mensaje)
             Else
-                ShowSwal(Me, "Persona creada")
+                ShowSwal(Me, mensaje)
             End If
 
             Txt_nombre.Text = ""
@@ -36,7 +36,7 @@ Public Class FormPersona
             Gv_personas.DataBind()
         Catch ex As Exception
             lbl_mensaje.Text = "Error al guardar la persona: " & ex.Message
-            SwalUtils.ShowSwalError(Me, "Error al guardar la persona: ", ex.Message)
+            SwalUtils.ShowSwalError(Me, "Error al guardar la persona! ", ex.Message)
         End Try
 
     End Sub
@@ -49,14 +49,14 @@ Public Class FormPersona
             If mensaje.Contains("Error") Then
                 ShowSwalError(Me, "Error", mensaje)
             Else
-                ShowSwal(Me, "Éxito", mensaje, "success")
+                ShowSwal(Me, mensaje)
             End If
 
             e.Cancel = True
             Gv_personas.DataBind()
         Catch ex As Exception
             lbl_mensaje.Text = "Error al eliminar la persona: " & ex.Message
-            ShowSwalError(Me, "Error al eliminar la persona: ", ex.Message)
+            ShowSwalError(Me, "Error al eliminar la persona! ", ex.Message)
         End Try
     End Sub
 
@@ -76,7 +76,7 @@ Public Class FormPersona
                 .Apellido1 = e.NewValues("Apellido1"),
                 .Apellido2 = e.NewValues("Apellido2"),
                 .Nacionalidad = e.NewValues("Nacionalidad"),
-                .FechaNacimiento = e.NewValues("Fecha de Nacimiento"),
+                .FechaNacimiento = e.NewValues("FechaNacimiento"),
                 .Telefono = e.NewValues("Telefono"),
                 .IdPersona = id
             }
@@ -86,14 +86,12 @@ Public Class FormPersona
             Else
                 ShowSwal(Me, mensaje)
             End If
-
             Gv_personas.DataBind()
             e.Cancel = True
             Gv_personas.EditIndex = -1
         Catch ex As Exception
             ShowSwalError(Me, "Error al actualizar la persona: ", ex.Message)
         End Try
-
 
     End Sub
 
