@@ -16,11 +16,11 @@ Public Class Login
         Dim DbHelper As New dbLogin()
         Dim isValid As Boolean = DbHelper.ValidateLogin(nombreUsuario, pass)
         If isValid Then
-            ' Guardar la información del usuario en la sesión
-            Dim User As Usuario = DbHelper.GetUser(nombreUsuario)
-            Session("Usuario") = User
+            ' Inicio exitoso de sesion
+            Dim User As Usuario = DbHelper.GetUser(nombreUsuario) 'Obtener el usuario
+            Session("Usuario") = User 'Guardar el usuario en la sesion
             If User.Rol = "2" Then
-                Response.Redirect("Admin.aspx")
+                Response.Redirect("Admin.aspx") 'Redirige a la pagina administrador
                 Return
             End If
             Response.Redirect("Home.aspx")

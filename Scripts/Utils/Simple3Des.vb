@@ -10,7 +10,7 @@ Public NotInheritable Class Simple3Des
         ReDim Preserve hash(length - 1)
         Return hash
     End Function
-    Public Sub New(key As String) 'Constructor
+    Public Sub New(key As String) 'Constructor que recibe la clave
         TripleDes.Key = TruncateHash(key, TripleDes.KeySize \ 8)
         TripleDes.IV = TruncateHash("", TripleDes.BlockSize \ 8)
     End Sub
