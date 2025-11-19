@@ -57,7 +57,7 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/FormPropietario">Propietario</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/FormVehiculo">Vehiculo</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/FormPersona">Persona</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" 
+                        <li class="nav-item"><a class="nav-link" runat="server"> 
                             <asp:Button ID="LogOut" OnClick="LogOut_Click" runat="server" Text="Button" CssClass="btn btn-danger btn-sm"/> </a></li>
                          <% end If%>
                     </ul>

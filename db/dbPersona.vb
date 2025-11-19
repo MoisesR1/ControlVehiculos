@@ -74,7 +74,7 @@ Public Class dbPersona
             Dim sql As String = "SELECT *,CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2, ' ') As NombreCompleto FROM Persona"
             Return dbHelper.ExecuteQuery(sql, New List(Of SqlParameter)())
         Catch ex As Exception
-
+            Return New DataTable()
         End Try
 
     End Function
