@@ -68,4 +68,14 @@ Public Class dbPersona
         End Try
         Return "Persona Actualizada"
     End Function
+
+    Public Function Consulta() As DataTable
+        Try
+            Dim sql As String = "SELECT *,CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2, ' ') As NombreCompleto FROM Persona"
+            Return dbHelper.ExecuteQuery(sql, New List(Of SqlParameter)())
+        Catch ex As Exception
+
+        End Try
+
+    End Function
 End Class
