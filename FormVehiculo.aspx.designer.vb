@@ -32,15 +32,6 @@ Partial Public Class FormVehiculo
     Protected WithEvents Ddl_personas As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control Txt_idVehiculo.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Txt_idVehiculo As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''Control Txt_marca.
     '''</summary>
     '''<remarks>

@@ -2,14 +2,13 @@
 Imports System.Security.Cryptography
 Public Class dbVehiculo
 
-    ReadOnly ConectionString As String = ConfigurationManager.ConnectionStrings("II-46ConnectionString").ConnectionString
+    Public ReadOnly ConectionString As String = ConfigurationManager.ConnectionStrings("II-46ConnectionString").ConnectionString
     Private ReadOnly dbHelper = New DbHelper() 'clase para manejar la conexion y consultas a la base de datos
     Public Function create(Vehiculo As Vehiculo) As String
         Try
-            Dim sql As String = "INSERT INTO Vehiculos (idVehiculo,Placa, Marca, Modelo, IdPropietario) 
+            Dim sql As String = "INSERT INTO Vehiculos (Placa, Marca, Modelo, IdPropietario) 
              VALUES (@Placa, @Marca, @Modelo, @IdPropietario)"
             Dim parametros As New List(Of SqlParameter) From {
-                New SqlParameter("@idVehiculo", Vehiculo.IdVehiculo),
                 New SqlParameter("@Placa", Vehiculo.Placa),
                 New SqlParameter("@Marca", Vehiculo.Marca),
                 New SqlParameter("@Modelo", Vehiculo.Modelo),

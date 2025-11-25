@@ -11,11 +11,12 @@ Public Class FormVehiculo
 
     Protected Sub Btn_guardar_Click(sender As Object, e As EventArgs)
         Try
-            vehiculo.IdVehiculo = Txt_idVehiculo.Text
+
             vehiculo.Placa = Txt_placa.Text
             vehiculo.Marca = Txt_marca.Text
             vehiculo.Modelo = Txt_modelo.Text
-            vehiculo.IdPropietario = Convert.ToInt32(Ddl_personas.SelectedValue)
+            vehiculo.IdPropietario = Txt_idPropietario.Text = Ddl_personas.SelectedValue
+
 
             Dim mensaje = dbHelper.create(vehiculo)
             If mensaje.Contains("Error") Then
@@ -23,13 +24,16 @@ Public Class FormVehiculo
             Else
                 ShowSwal(Me, mensaje)
             End If
+
             Txt_placa.Text = ""
             Txt_marca.Text = ""
             Txt_modelo.Text = ""
+            Txt_idPropietario.Text = ""
+
             Ddl_personas.SelectedIndex = 0
             Gv_vehiculos.DataBind()
         Catch ex As Exception
-            lbl_mensaje.
+            lbl_mensaje.Text = "Error al guardar la persona: " & ex.Message
             SwalUtils.ShowSwalError(Me, "Error al guardar vehiculo! ", ex.Message)
         End Try
     End Sub

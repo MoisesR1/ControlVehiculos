@@ -7,7 +7,7 @@
         <asp:DropDownList ID="Ddl_personas" runat="server" CssClass="form-control">
             <asp:ListItem Text="Seleccione Persona" Value="" />
         </asp:DropDownList>
-        <asp:TextBox ID="Txt_idVehiculo" Placeholder="idVehiculo" runat="server"></asp:TextBox>
+      
         <asp:TextBox ID="Txt_marca" Placeholder="Marca" runat="server"></asp:TextBox>
         <asp:TextBox ID="Txt_modelo" Placeholder="Modelo" runat="server"></asp:TextBox> 
         <asp:TextBox ID="Txt_placa" Placeholder="Placa" runat="server"></asp:TextBox>
