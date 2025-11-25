@@ -1,21 +1,19 @@
 ﻿Public Class Vehiculo
     Private _idVehiculo As Integer
-    Private _idPropietario As Integer
     Private _marca As String
     Private _modelo As String
-    Private _anio As Integer
     Private _placa As String
+    Private _idPropietario As Integer
 
     Public Sub New()
     End Sub
 
-    Public Sub New(idVehiculo As Integer, idPropietario As Integer, marca As String, modelo As String, anio As Integer, placa As String)
+    Public Sub New(idVehiculo As Integer, marca As String, modelo As String, placa As String, idPropietario As Integer)
         Me.IdVehiculo = idVehiculo
-        Me.IdPropietario = idPropietario
         Me.Marca = marca
         Me.Modelo = modelo
-        Me.Anio = anio
         Me.Placa = placa
+        Me.IdPropietario = idPropietario
     End Sub
 
     Public Property IdVehiculo As Integer
@@ -24,15 +22,6 @@
         End Get
         Set(value As Integer)
             _idVehiculo = value
-        End Set
-    End Property
-
-    Public Property IdPropietario As Integer
-        Get
-            Return _idPropietario
-        End Get
-        Set(value As Integer)
-            _idPropietario = value
         End Set
     End Property
 
@@ -54,21 +43,20 @@
         End Set
     End Property
 
-    Public Property Anio As Integer
-        Get
-            Return _anio
-        End Get
-        Set(value As Integer)
-            _anio = value
-        End Set
-    End Property
-
     Public Property Placa As String
         Get
             Return _placa
         End Get
         Set(value As String)
             _placa = value
+        End Set
+    End Property
+    Public Property IdPropietario As Integer
+        Get
+            Return _idPropietario
+        End Get
+        Set(value As Integer)
+            _idPropietario = value
         End Set
     End Property
 End Class
