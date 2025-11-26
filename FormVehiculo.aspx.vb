@@ -2,11 +2,21 @@
 Public Class FormVehiculo
     Inherits System.Web.UI.Page
     Public vehiculo As New Vehiculo()
-    Protected dbHelper As New dbVehiculo()
+    Protected dbVehiculo As New dbVehiculo()
+    Protected dbPropietario As New dbPropietario()
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Not IsPostBack Then
+            CargarPropietarios()
+        End If
+    End Sub
 
-
+    Public Sub CargarPropietarios()
+        Ddl_Propietario.DataSource = dbPropietario.Consulta()
+        Ddl_Propietario.DataTextField = "NombreCompleto"
+        Ddl_Propietario.DataValueField = "idPropietario"
+        Ddl_Propietario.DataBind()
+        Ddl_Propietario.Items.Insert(0, New ListItem("--Seleccione una persona--", "0"))
     End Sub
 
     Protected Sub Btn_guardar_Click(sender As Object, e As EventArgs)
@@ -15,10 +25,11 @@ Public Class FormVehiculo
             vehiculo.Placa = Txt_placa.Text
             vehiculo.Marca = Txt_marca.Text
             vehiculo.Modelo = Txt_modelo.Text
-            vehiculo.IdPropietario = Txt_idPropietario.Text = Ddl_personas.SelectedValue
+            vehiculo.IdPropietario = Txt_idPropietario.Text
+            '= Ddl_personas.SelectedValue
 
 
-            Dim mensaje = dbHelper.create(vehiculo)
+            Dim mensaje = dbVehiculo.create(vehiculo)
             If mensaje.Contains("Error") Then
                 SwalUtils.ShowSwalError(Me, "Error", mensaje)
             Else
@@ -30,7 +41,7 @@ Public Class FormVehiculo
             Txt_modelo.Text = ""
             Txt_idPropietario.Text = ""
 
-            Ddl_personas.SelectedIndex = 0
+            Ddl_Propietario.SelectedIndex = 0
             Gv_vehiculos.DataBind()
         Catch ex As Exception
             lbl_mensaje.Text = "Error al guardar la persona: " & ex.Message
@@ -46,7 +57,7 @@ Public Class FormVehiculo
             .Placa = Txt_placa.Text(),
             .IdVehiculo = editando.Value()
         }
-            Dim mensaje = dbHelper.update(vehiculo)
+            Dim mensaje = dbVehiculo.update(vehiculo)
             If mensaje.Contains("Error") Then
                 ShowSwalError(Me, "Error", mensaje)
             Else
@@ -79,7 +90,7 @@ Public Class FormVehiculo
     Protected Sub Gv_vehiculos_RowDeleting(sender As Object, e As GridViewDeleteEventArgs)
         Try
             Dim placa As String = Gv_vehiculos.DataKeys(e.RowIndex).Value.ToString()
-            Dim mensaje As String = dbHelper.delete(placa)
+            Dim mensaje As String = dbVehiculo.delete(placa)
             If mensaje.Contains("Error") Then
                 ShowSwalError(Me, "Error", mensaje)
             Else
@@ -96,7 +107,7 @@ Public Class FormVehiculo
 
     Protected Sub Gv_vehiculos_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim row As GridViewRow = Gv_vehiculos.SelectedRow()
-        Ddl_personas.SelectedValue = Gv_vehiculos.DataKeys(Gv_vehiculos.SelectedIndex).Values("IdPropietario").ToString()
+        Ddl_Propietario.SelectedValue = Gv_vehiculos.DataKeys(Gv_vehiculos.SelectedIndex).Values("IdPropietario").ToString()
         Btn_guardar.Visible = False
         editando.Value = Gv_vehiculos.DataKeys(Gv_vehiculos.SelectedIndex).Values("IdVehiculo").ToString()
 

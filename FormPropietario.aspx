@@ -14,18 +14,19 @@
            <asp:DropDownList ID="Ddl_personas" runat="server" CssClass="form-control"> 
                <asp:ListItem Text="Seleccione Persona" Value="" />
            </asp:DropDownList>
+           <asp:Button ID="btnGuardar" runat="server" Text="Button" OnClick="btnGuardar_Click" />
+           <asp:GridView ID="Gv_Propietarios" runat="server" AutoGenerateColumns="False" DataKeyNames="IdPropietario" DataSourceID="SqlDataSource1">
+               <Columns>
+                   <asp:BoundField DataField="IdPropietario" HeaderText="IdPropietario" InsertVisible="False" ReadOnly="True" SortExpression="IdPropietario" />
+                   <asp:BoundField DataField="IdPersona" HeaderText="IdPersona" SortExpression="IdPersona" />
+               </Columns>
 
 
-<asp:TextBox ID="Txt_nombre" Placeholder="Nombre" runat="server"></asp:TextBox>
-<asp:TextBox ID="Txt_apellido1" Placeholder="Primer Apellido" runat="server"></asp:TextBox>
-<asp:TextBox ID="Txt_apellido2" Placeholder="Segundo Apellido" runat="server"></asp:TextBox>
-<asp:TextBox ID="Txt_nacionalidad" Placeholder="Nacionalidad" runat="server"></asp:TextBox>
-<asp:TextBox ID="Txt_FechaNacimiento"  Placeholder="Fecha de Nacimiento" TextMode="Date" runat="server"></asp:TextBox>
-<asp:TextBox ID="Txt_Telefono" Placeholder="Telefono" runat="server"></asp:TextBox>
+           </asp:GridView>
 
 
+           <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:II-46ConnectionString %>" SelectCommand="SELECT * FROM [Propietarios]"></asp:SqlDataSource>
 
-<asp:Label ID="lbl_mensaje" runat="server" Text=""></asp:Label>
 
   </div>
 </asp:Content>
